@@ -6,7 +6,7 @@ pfam <- '/mnt/ubi/iferres/pfam'
 hmmpfam <- paste0(pfam,'/Pfam-A.hmm')
 datpfam <- paste0(pfam,'/Pfam-A.hmm.dat')
 
-setwd("/mnt/ubi/iferres/pewitEval/posGram/")
+setwd("/mnt/ubi/iferres/pewitEval/negGram/")
 
 dir.create('pewit_resu')
 
