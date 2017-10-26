@@ -6,6 +6,8 @@ setwd("/mnt/ubi/iferres/pewitEval/posGram/")
 dirs <- list.dirs()
 dirs <- grep('_gff', dirs, value = TRUE)
 
+dir.create('roary_i95_resu')
+
 count <- function(x){
   read.csv(x, stringsAsFactors = FALSE)
   rn <- as.character(x$Gene)
@@ -27,7 +29,7 @@ fin <- mclapply(1:length(dirs), function(d){
   df <- mclapply(1:5, function(i){
     set.seed(i)
     gfs <- sample(gffs, 10)
-    out <- paste0('pewit_resu',sub('[./]','',dirs[d]),'_out_',i)
+    out <- paste0('roary_i95_resu',sub('[./]','',dirs[d]),'_out_',i)
     
     roary <- paste0('roary -p 1 -cd 100 -f ',out,' ',gfs)
     stime <- system.time(system(roary))
@@ -38,7 +40,7 @@ fin <- mclapply(1:length(dirs), function(d){
     o <- NULL
     
     o[1] <- list(gfs)
-    o[2] <- attr(p,'output')
+    o[2] <- out
     o[3] <- count(paste0(out,'/gene_presence_absence.csv')) 
     o[4] <- ncol(xx)-1 
     o[5] <- nrow(xx)
@@ -65,4 +67,4 @@ fin <- mclapply(1:length(dirs), function(d){
 }, mc.cores = 1)
 
 
-saveRDS(fin, file = 'pewit_resu/resu_genomeSize.RDS')
+saveRDS(fin, file = 'roary_i95_resu/resu_posGram.RDS')
