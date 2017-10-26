@@ -31,7 +31,7 @@ fin <- mclapply(1:length(dirs), function(d){
     gfs <- sample(gffs, 10)
     out <- paste0('roary_i95_resu',sub('[./]','',dirs[d]),'_out_',i)
     
-    roary <- paste0('roary -p 1 -cd 100 -f ',out,' ',gfs)
+    roary <- paste0('roary -p 1 -cd 100 -f ',out,' ',paste(gfs, collapse = ' '))
     stime <- system.time(system(roary))
     
     xx <- read.csv(paste0(out,'/gene_presence_absence.Rtab'),header = T, sep = '\t')
