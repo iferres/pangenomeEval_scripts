@@ -9,7 +9,7 @@ dirs <- grep('_gff', dirs, value = TRUE)
 dir.create('roary_i95_resu')
 
 count <- function(x){
-  read.csv(x, stringsAsFactors = FALSE)
+  x <- read.csv(x, stringsAsFactors = FALSE)
   rn <- as.character(x$Gene)
   x <- x[ , 15:ncol(x)]
   rownames(x) <- rn
@@ -28,7 +28,7 @@ fin <- mclapply(1:length(dirs), function(d){
 
   df <- mclapply(1:5, function(i){
     set.seed(i)
-    gfs <- sample(gffs, 10)
+    gfs <- sample(gffs, 25)
     out <- paste0('roary_i95_resu',sub('[./]','',dirs[d]),'_out_',i)
     
     roary <- paste0('roary -p 1 -cd 100 -f ',out,' ',paste(gfs, collapse = ' '))
