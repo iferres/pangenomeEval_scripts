@@ -3,7 +3,7 @@ library(parallel)
 
 setwd("/mnt/ubi/iferres/pewitEval/posGram/")
 
-dirs <- list.dirs()
+dirs <- list.dirs(recursive = FALSE)
 dirs <- grep('_gff', dirs, value = TRUE)
 
 dir.create('roary_i95_resu')
