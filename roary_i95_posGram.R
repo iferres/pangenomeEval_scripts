@@ -47,7 +47,7 @@ fin <- mclapply(1:length(dirs), function(d){
     o[6] <- length(which(apply(xx[,-1],1,function(x){all(x==1L)})))
     o[7] <- length(which(rowSums(xx[,-1])>=round((ncol(xx)-1)*0.95))) 
     o[8] <- length(which(rowSums(xx[,-1])==1)) 
-    o[9] <- length(which(rowSums(xx[,-1])<round(ncol(xx[,-1])*0.95)))-o[8]
+    o[9] <- length(which(rowSums(xx[,-1])<round(ncol(xx[,-1])*0.95)))-o[[8]][1]
     o[10] <- stime[[3]]
     
     names(o) <-  c("Orgs", "OutDir", "Num_CDS", "Num_Orgs", 
