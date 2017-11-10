@@ -65,7 +65,7 @@ fin <- mclapply(sq, function(d){
   return(resu)
   
   
-}, mc.cores = 2,mc.preschedule = FALSE)
+}, mc.cores = 1,mc.preschedule = FALSE)
 
 
 saveRDS(fin, file = 'roary_i70_resu/resu_numGenomes.RDS')
