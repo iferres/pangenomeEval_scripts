@@ -3,7 +3,7 @@ library(parallel)
 
 setwd("/mnt/ubi/iferres/pewitEval/numGenomes")
 
-dir.create('roary_i70_resu')
+dir.create('roary_i95_resu')
 
 count <- function(x){
   x <- read.csv(x, stringsAsFactors = FALSE)
@@ -29,9 +29,9 @@ fin <- mclapply(sq, function(d){
   df <- mclapply(1:10, function(i){
     set.seed(i)
     gfs <- sample(gffs, d)
-    out <- paste0('roary_i70_resu/',d,'Genomes_out_',i)
+    out <- paste0('roary_i95_resu/',d,'Genomes_out_',i)
     
-    roary <- paste0('roary -p 1 -cd 100 -i 70 -f ',out,' ',paste(gfs, collapse = ' '))
+    roary <- paste0('roary -p 1 -cd 100 -i 95 -f ',out,' ',paste(gfs, collapse = ' '))
     stime <- system.time(system(roary))
     
     xx <- read.csv(paste0(out,'/gene_presence_absence.Rtab'),header = T, sep = '\t')
@@ -65,9 +65,9 @@ fin <- mclapply(sq, function(d){
   return(resu)
   
   
-}, mc.cores = 1,mc.preschedule = FALSE)
+}, mc.cores = 2,mc.preschedule = FALSE)
 
 
-saveRDS(fin, file = 'roary_i70_resu/resu_numGenomes.RDS')
+saveRDS(fin, file = 'roary_i95_resu/resu_numGenomes.RDS')
 
 
